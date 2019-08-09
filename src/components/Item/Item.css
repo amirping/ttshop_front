@@ -1,0 +1,12 @@
+.oldPrice {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.item {
+    cursor: pointer;
+}
+
+.item:hover {
+    background: gray;
+}

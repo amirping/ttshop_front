@@ -4,7 +4,13 @@ import theme from "./theme";
 import AppBar from "./components/AppBar/AppBar";
 import { Cart, User, Login } from "grommet-icons";
 import HomeStore from "./components/HomeStore/HomeStore";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import Profile from "./components/Profile/Profile";
 import ItemDetails from "./components/ItemDetails/ItemDetails";
 import Order from "./components/Order/Order";
@@ -61,7 +67,8 @@ const App: React.FC = () => {
         <Box direction="row" fill>
           <Router>
             <Switch>
-              <Route path="/s/:req?/:filter?" exact component={HomeStore} />
+              <Route path="/home/:req?/:filter?" exact component={HomeStore} />
+              <Redirect from="/" to="/home" />
               <Route path="/item/:id" component={ItemDetails} />
               <Route path="/user/" component={Profile} />
               <Route path="/order/" component={Order} />

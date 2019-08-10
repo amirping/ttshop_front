@@ -172,7 +172,7 @@ class HomeStore extends Component<any, HomeStoreState> {
                 wrap={true}
                 justify="center">
                 {this.state.items.map(item => (
-                  <Item />
+                  <Item {...this.props} />
                 ))}
               </Box>
             </Box>

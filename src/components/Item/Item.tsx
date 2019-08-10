@@ -16,7 +16,7 @@ export interface ItemState {
   display: number;
 }
 
-class Item extends Component<ItemProps, ItemState> {
+class Item extends Component<any, ItemState> {
   constructor(props: ItemProps) {
     super(props);
     this.state = {
@@ -32,6 +32,9 @@ class Item extends Component<ItemProps, ItemState> {
       display: 0
     };
   }
+  showItem = (idItem: number) => (ev: any) => {
+    this.props.history.push("/item/" + idItem);
+  };
   render() {
     return (
       <Box
@@ -44,6 +47,7 @@ class Item extends Component<ItemProps, ItemState> {
         height="medium"
         margin="xsmall"
         className="item"
+        onClick={() => this.showItem(this.state.id)}
         direction="column">
         <Box pad="small">
           <Heading margin="none" level="6">

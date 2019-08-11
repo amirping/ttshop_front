@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Box, Image, Heading, Paragraph, Text } from "grommet";
+import { Box, Image, Heading, Paragraph, Text, Button } from "grommet";
 import { Money } from "grommet-icons";
 import "./Item.css";
 export interface ItemProps {}
@@ -33,6 +33,8 @@ class Item extends Component<any, ItemState> {
     };
   }
   showItem = (idItem: number) => (ev: any) => {
+      alert("skjdfnksdnhklj")
+      console.log("start redirect")
     this.props.history.push("/item/" + idItem);
   };
   render() {
@@ -99,6 +101,7 @@ class Item extends Component<any, ItemState> {
               </Box>
             </Box>
           )}
+          <Button plain hoverIndicator={false} href={"/item/"+this.state.id}> Show details </Button>
         </Box>
       </Box>
     );

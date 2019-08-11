@@ -7,7 +7,6 @@ import HomeStore from "./components/HomeStore/HomeStore";
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Switch,
   Redirect
 } from "react-router-dom";
@@ -67,8 +66,8 @@ const App: React.FC = () => {
         <Box direction="row" fill>
           <Router>
             <Switch>
+              <Redirect exact from="/" to="/home" />
               <Route path="/home/:req?/:filter?" exact component={HomeStore} />
-              <Redirect from="/" to="/home" />
               <Route path="/item/:id" component={ItemDetails} />
               <Route path="/user/" component={Profile} />
               <Route path="/order/" component={Order} />

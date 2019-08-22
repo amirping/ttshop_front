@@ -33,9 +33,8 @@ class SideMenu extends React.Component<any, SideMenuState> {
     this.setState({ searchQuery: v });
   };
   startSearch = () => {
-    alert("kjkjkj");
     // eslint-disable-next-line no-restricted-globals
-    this.props.history.push("/" + this.state.searchQuery);
+    this.props.history.push("/home/" + this.state.searchQuery);
   };
   setDepartment = (selectedDep: any) => {
     this.setState({ selectedDep: selectedDep });

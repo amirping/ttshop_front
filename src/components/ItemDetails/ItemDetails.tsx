@@ -3,19 +3,28 @@ import { Box, ResponsiveContext, Heading, Button, Layer, Collapsible, Image, Par
 import { Menu, FormClose, Money } from "grommet-icons";
 import SideMenu from "../SideMenu/SideMenu";
 import "./ItemDetails.css"
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
 
 export interface ItemDetailsProps {}
 
 export interface ItemDetailsState {
      showSidebar: boolean; price: number;
   discounted_price: number;
+  images:Array<any>;
+  isopenBox :boolean;
+  indexImage:number
 }
 
 class ItemDetails extends React.Component<ItemDetailsProps, ItemDetailsState> {
   constructor(props: ItemDetailsProps) {
     super(props);
     this.state = { showSidebar: true,price: 25.0,
-      discounted_price: 19.0, };
+      discounted_price: 19.0,
+      images : ['https://v2.grommet.io/assets/Wilderpeople_Ricky.jpg','https://v2.grommet.io/assets/Wilderpeople_Ricky.jpg'],
+      indexImage: 0,
+      isopenBox: false,
+      } ;
   }
   render() {
       const { showSidebar } = this.state;
@@ -75,16 +84,16 @@ class ItemDetails extends React.Component<ItemDetailsProps, ItemDetailsState> {
                <Box flex direction="row-responsive" fill pad="small" gap="10px">
                   <Box flex direction="column" className="picsSide" gap="20px">
                     <Box>
-                     <Image fit="cover" src="https://v2.grommet.io/assets/Wilderpeople_Ricky.jpg"/>
+                     <Image fit="cover" src="https://v2.grommet.io/assets/Wilderpeople_Ricky.jpg" onClick={() => this.setState({ isopenBox: true })}/>
                     </Box>
                     <Box direction="row" gap="20px">
                         <Box>
-                            <Image fit="cover" src="https://v2.grommet.io/assets/Wilderpeople_Ricky.jpg"/>
+                            <Image fit="cover" src="https://v2.grommet.io/assets/Wilderpeople_Ricky.jpg" onClick={() => this.setState({ isopenBox: true })}/>
                         </Box>
                         <Box>
-                            <Image fit="cover" src="https://v2.grommet.io/assets/Wilderpeople_Ricky.jpg"/>
+                            <Image fit="cover" src="https://v2.grommet.io/assets/Wilderpeople_Ricky.jpg" onClick={() => this.setState({ isopenBox: true })}/>
                         </Box><Box>
-                            <Image fit="cover" src="https://v2.grommet.io/assets/Wilderpeople_Ricky.jpg"/>
+                            <Image fit="cover" src="https://v2.grommet.io/assets/Wilderpeople_Ricky.jpg" onClick={() => this.setState({ isopenBox: true })}/>
                         </Box>
                     </Box>
                   </Box>
@@ -133,11 +142,32 @@ class ItemDetails extends React.Component<ItemDetailsProps, ItemDetailsState> {
               </Box>
             </Box>
           )}
-          <Button plain hoverIndicator={false} > Add to Basket </Button>
+          <Box direction="row-responsive" gap="10px">
+            <Button plain hoverIndicator={false}> View : 0 </Button>
+            <Button hoverIndicator={false} > Add to Basket </Button>
+          </Box>
         </Box>
                   </Box>
                </Box>
             </Box>
+            {this.state.isopenBox && (
+          <Lightbox
+            mainSrc={this.state.images[this.state.indexImage]}
+            nextSrc={this.state.images[(this.state.indexImage + 1) % this.state.images.length]}
+            prevSrc={this.state.images[(this.state.indexImage + this.state.images.length - 1) % this.state.images.length]}
+            onCloseRequest={() => this.setState({isopenBox: false })}
+            onMovePrevRequest={() =>
+              this.setState({
+                indexImage: (this.state.indexImage + this.state.images.length - 1) % this.state.images.length,
+              })
+            }
+            onMoveNextRequest={() =>
+              this.setState({
+                indexImage: (this.state.indexImage + 1) % this.state.images.length,
+              })
+            }
+          />
+        )}
           </Box>
         )}
       </ResponsiveContext.Consumer>

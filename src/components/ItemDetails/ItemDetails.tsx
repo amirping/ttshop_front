@@ -144,7 +144,7 @@ class ItemDetails extends React.Component<ItemDetailsProps, ItemDetailsState> {
           )}
           <Box direction="row-responsive" gap="10px">
             <Button plain hoverIndicator={false}> View : 0 </Button>
-            <Button hoverIndicator={false} > Add to Basket </Button>
+            <Button  hoverIndicator={false} > Add to Basket </Button>
           </Box>
         </Box>
                   </Box>

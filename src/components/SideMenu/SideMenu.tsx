@@ -10,7 +10,6 @@ import {
 } from "grommet";
 import "./SideMenu.css";
 import { Search } from "grommet-icons";
-import { HashRouter, Route } from "react-router-dom";
 export interface SideMenuProps {}
 
 export interface SideMenuState {
